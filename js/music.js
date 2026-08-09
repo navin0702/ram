@@ -3,7 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const musicBtn = document.getElementById("musicBtn");
     const path = window.location.pathname.toLowerCase();
     
-    if (path.endsWith("video.html")) {
+    const isNoMusicPage = path.endsWith("index.html") || 
+                          path.endsWith("video.html") || 
+                          path.endsWith("/") || 
+                          path === "" ||
+                          (!path.includes(".html") && !path.includes("reasons") && !path.includes("message") && !path.includes("video") && !path.includes("heart") && !path.includes("cake") && !path.includes("memories"));
+
+    if (isNoMusicPage) {
         if (musicBtn) musicBtn.style.display = "none";
         const bgAudio = document.getElementById("bgMusic");
         if (bgAudio) bgAudio.pause();
@@ -11,8 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Determine the song and volume for the current page
-    let songSrc = "music/theri.mp3"; // default music
-    let volume = 0.8; // default volume
+    let songSrc = "";
+    let volume = 0.8;
     
     if (path.endsWith("message.html")) {
         songSrc = "music/friendship.mp3";
@@ -23,7 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (path.endsWith("cake.html")) {
         songSrc = "music/birthday_bgm.m4a";
         volume = 0.8;
+    } else if (path.endsWith("reasons.html") || path.endsWith("heart.html")) {
+        songSrc = "music/theri.mp3";
+        volume = 0.8;
     }
+
+    if (!songSrc) return;
 
     // Set up HTML5 audio element
     let bgAudio = document.getElementById("bgMusic");
