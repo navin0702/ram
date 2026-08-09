@@ -106,18 +106,6 @@
             </button>
         </div>
 
-        <!-- Make a Wish Modal -->
-        <div id="wishModal" class="wish-modal">
-            <div class="wish-card">
-                <h2>✨ Make A Birthday Wish ✨</h2>
-                <p>Close your eyes, make a secret wish in your heart, and send it to the stars ❤️</p>
-                <textarea id="wishInput" placeholder="Type your birthday wish here... (Optional & private)"></textarea>
-                <button id="sendWishBtn" class="nextBtn">
-                    Send Wish To The Stars ✨
-                </button>
-            </div>
-        </div>
-
         <div class="next-nav-wrapper">
             <a id="nextPageBtn" href="heart.html" class="nextBtn hidden-btn">
                 Touch My Heart ❤️ →
@@ -131,8 +119,6 @@
         document.addEventListener("DOMContentLoaded", () => {
             const flames = document.querySelectorAll(".flame");
             const blowBtn = document.getElementById("blowBtn");
-            const wishModal = document.getElementById("wishModal");
-            const sendWishBtn = document.getElementById("sendWishBtn");
             const nextPageBtn = document.getElementById("nextPageBtn");
             const instructionText = document.getElementById("instructionText");
             let blownCount = 0;
@@ -157,9 +143,9 @@
                     triggerFireworks((2 * window.innerWidth) / 3, window.innerHeight / 2);
                 }, 200);
 
-                // Show Wish Modal
+                // Show Next Surprise Button directly
                 setTimeout(() => {
-                    if (wishModal) wishModal.classList.add("active");
+                    if (nextPageBtn) nextPageBtn.classList.remove("hidden-btn");
                 }, 1200);
             }
 
@@ -174,21 +160,6 @@
             });
 
             if (blowBtn) blowBtn.addEventListener("click", blowCandles);
-
-            if (sendWishBtn) {
-                sendWishBtn.addEventListener("click", () => {
-                    const wishText = document.getElementById("wishInput").value.trim();
-                    const bodyText = wishText ? wishText : "Happy Birthday!";
-                    
-                    // Create sms link for mobile/desktop SMS clients
-                    const smsLink = `sms:+916381825830?body=${encodeURIComponent(bodyText)}`;
-                    window.location.href = smsLink;
-
-                    if (wishModal) wishModal.classList.remove("active");
-                    triggerFireworks(window.innerWidth / 2, window.innerHeight / 2);
-                    if (nextPageBtn) nextPageBtn.classList.remove("hidden-btn");
-                });
-            }
         });
     </script>
 </body>
