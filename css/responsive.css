@@ -1,0 +1,272 @@
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVENESS SYSTEM
+   ========================================================================== */
+
+/* Global layout adjustments for mobile */
+@media (max-width: 768px) {
+    body {
+        padding-bottom: 90px; /* Space for the bottom navigation */
+    }
+
+    /* Bottom navigation for mobile devices */
+    .couple-nav {
+        top: auto;
+        bottom: 15px;
+        width: 92%;
+        max-width: 480px;
+        padding: 8px 12px;
+        gap: 4px;
+        border-radius: 30px;
+        box-shadow: 0 -8px 30px rgba(168, 85, 247, 0.25);
+        justify-content: space-around;
+        scrollbar-width: none; /* Hide scrollbar Firefox */
+    }
+
+    .couple-nav::-webkit-scrollbar {
+        display: none; /* Hide scrollbar Chrome/Safari */
+    }
+
+    .couple-nav a {
+        font-size: 11px;
+        padding: 6px 10px;
+        gap: 4px;
+    }
+
+    /* Scaled down music control */
+    .music-box {
+        top: 15px;
+        right: 15px;
+    }
+
+    .music-box button {
+        width: 46px;
+        height: 46px;
+        font-size: 16px;
+    }
+
+    /* Common page titles scale */
+    .page-title,
+    .memory-page h1,
+    .letter-page .page-title,
+    .reasons-page .page-title,
+    .cake-page .page-title,
+    .heart-page .page-title,
+    .video-page .page-title {
+        font-size: 32px !important;
+        margin-bottom: 12px;
+        line-height: 1.2;
+    }
+
+    .sub-title,
+    .memory-page p,
+    .letter-page .sub-title,
+    .reasons-page .sub-title,
+    .cake-page .sub-title,
+    .heart-page .sub-title,
+    .video-page .sub-title {
+        font-size: 15px !important;
+        margin-bottom: 25px;
+        line-height: 1.5;
+        padding: 0 10px;
+    }
+
+    .section-title {
+        font-size: 24px !important;
+    }
+
+    /* Hero section glass card responsive styling */
+    .hero {
+        padding: 80px 10px 40px;
+    }
+
+    .glass-card {
+        padding: 35px 20px 30px;
+        border-radius: 28px;
+    }
+
+    .glass-card h4.sub-header {
+        font-size: 14px;
+        letter-spacing: 1.5px;
+        margin-bottom: 10px;
+    }
+
+    .glass-card h1.main-title {
+        font-size: 38px;
+        line-height: 1.1;
+    }
+
+    .glass-card h2 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .typing {
+        font-size: 15px;
+        line-height: 26px;
+        margin-bottom: 25px;
+    }
+
+    /* Countdown mobile tuning */
+    .countdown {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-bottom: 25px;
+    }
+
+    .countdown div {
+        padding: 10px 4px;
+        border-radius: 14px;
+    }
+
+    .countdown h3 {
+        font-size: 22px;
+    }
+
+    .countdown p {
+        font-size: 11px;
+        margin-top: 2px;
+    }
+
+    .nextBtn {
+        padding: 12px 30px;
+        font-size: 15px;
+        border-radius: 30px;
+    }
+
+    /* Footer adjustments */
+    footer {
+        font-size: 12px;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Extra small mobile adjustments */
+@media (max-width: 480px) {
+    .couple-nav a span {
+        display: none; /* Icon-only view on very small screens for clean look */
+    }
+    
+    .couple-nav {
+        max-width: 290px;
+        padding: 8px 10px;
+    }
+
+    .couple-nav a {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+
+    .countdown h3 {
+        font-size: 18px;
+    }
+
+    .countdown p {
+        font-size: 9px;
+    }
+
+    /* Polaroid adjustments */
+    .gallery {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .polaroid {
+        padding: 12px 12px 20px;
+    }
+
+    .polaroid .img-wrapper {
+        height: 220px;
+    }
+
+    .polaroid h3 {
+        font-size: 18px;
+    }
+
+    .photo-date {
+        font-size: 12px;
+    }
+
+    /* Flip Cards & Reasons grid */
+    .reasons-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .flip-card {
+        height: 180px;
+    }
+
+    .flip-card-front h3 {
+        font-size: 18px;
+    }
+
+    .flip-card-back p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    /* Love Coupons */
+    .coupons-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .coupon-card {
+        padding: 20px;
+    }
+
+    .coupon-card h3 {
+        font-size: 18px;
+    }
+
+    /* Interactive 3D Cake scale */
+    .cake {
+        transform: scale(0.8);
+        transform-origin: bottom center;
+    }
+
+    .cake-wrapper {
+        height: 260px;
+    }
+
+    /* Written Letter Card adjustments */
+    .letter-card {
+        padding: 25px 20px;
+        border-radius: 18px;
+    }
+
+    .letter-header h2 {
+        font-size: 28px;
+    }
+
+    #typingText {
+        font-size: 15px;
+        line-height: 26px;
+    }
+
+    .letter-footer .sign-name {
+        font-size: 26px;
+    }
+
+    .envelope {
+        width: 290px;
+        height: 190px;
+    }
+
+    .wax-seal {
+        width: 55px;
+        height: 55px;
+    }
+
+    /* Promises section */
+    .promises-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .promise-card {
+        padding: 20px 15px;
+    }
+}

@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Romantic Reel 🎥</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* Custom Instagram Reels Layout */
+        .reels-section {
+            padding: 40px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .reels-viewport {
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+            border-radius: 28px;
+            background: rgba(15, 10, 25, 0.45);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 105, 180, 0.25);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            padding: 10px;
+        }
+
+        .reels-viewport::-webkit-scrollbar {
+            display: none;
+        }
+
+        .reel-slide {
+            scroll-snap-align: start;
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 40px;
+            padding: 30px;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .reel-slide:last-child {
+            border-bottom: none;
+        }
+
+        /* Smartphone Reel Container */
+        .reel-video-container {
+            position: relative;
+            width: 320px;
+            height: 520px;
+            background: #000000;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        .reel-video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Overlay Reels styling */
+        .reel-overlay-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+            color: #ffffff;
+            box-sizing: border-box;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .reel-user {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .reel-user-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #db2777;
+            object-fit: cover;
+        }
+
+        .reel-user-name {
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .reel-desc {
+            font-size: 12px;
+            margin-bottom: 6px;
+            line-height: 1.4;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .reel-music {
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0.9;
+        }
+
+        /* Side Controls on Video */
+        .reel-actions {
+            position: absolute;
+            right: 12px;
+            bottom: 90px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            z-index: 5;
+        }
+
+        .action-btn {
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            font-size: 18px;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.15);
+            background: rgba(219, 39, 119, 0.8);
+        }
+
+        .action-label {
+            color: #ffffff;
+            font-size: 11px;
+            margin-top: -12px;
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+
+        /* Custom Play Overlay */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 4;
+        }
+
+        .play-icon {
+            font-size: 50px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+            transition: transform 0.2s ease;
+        }
+
+        .video-overlay:hover .play-icon {
+            transform: scale(1.2);
+        }
+
+        /* Side Pop-up Message Bubble Styling */
+        .reel-messages-container {
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .message-bubble {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px 20px 20px 5px;
+            padding: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-left: 5px solid #db2777;
+            transform: translateX(60px);
+            opacity: 0;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease;
+        }
+
+        .message-bubble.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .message-sender {
+            font-weight: 700;
+            color: #db2777;
+            font-size: 13px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .message-text {
+            font-size: 13.5px;
+            color: #374151;
+            line-height: 1.4;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Responsive Layout styling */
+        @media (max-width: 768px) {
+            .reels-viewport {
+                max-height: none;
+                overflow-y: visible;
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .reel-slide {
+                flex-direction: column;
+                height: auto;
+                min-height: auto;
+                gap: 20px;
+                padding: 15px 0;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+            }
+
+            .reel-messages-container {
+                width: 100%;
+                max-width: 320px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background">
+        <div class="gradient"></div>
+        <div id="stars"></div>
+        <div class="aurora"></div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-box">
+        <button id="musicBtn" title="Toggle Music">
+            <i class="fa-solid fa-music"></i>
+        </button>
+        <audio id="bgMusic" loop>
+            <source src="music/happy-birthday.mp3" type="audio/mp3">
+        </audio>
+    </div>
+
+    <!-- Floating Hearts -->
+    <div class="hearts">
+        <span>❤️</span>
+        <span>💖</span>
+        <span>💕</span>
+        <span>💗</span>
+        <span>💓</span>
+    </div>
+
+    <!-- Quick Navigation Bar for Couple Journey -->
+    <nav class="couple-nav">
+        <a href="index.html"><i class="fa-solid fa-house"></i> <span>Home</span></a>
+        <a href="memories.html"><i class="fa-solid fa-images"></i> <span>Memories</span></a>
+        <a href="reasons.html"><i class="fa-solid fa-heart"></i> <span>Reasons</span></a>
+        <a href="message.html"><i class="fa-solid fa-envelope"></i> <span>Letter</span></a>
+        <a href="video.html" class="active"><i class="fa-solid fa-film"></i> <span>Reel</span></a>
+        <a href="cake.html"><i class="fa-solid fa-cake-candles"></i> <span>Cake</span></a>
+        <a href="heart.html"><i class="fa-solid fa-hand-holding-heart"></i> <span>Promises</span></a>
+    </nav>
+
+    <section class="video-page">
+        <h1 class="page-title">
+            🎬 Our Romantic Memory Reel
+        </h1>
+        <p class="sub-title">
+            Scroll down like Instagram Reels & press play to relive our moments ❤️
+        </p>
+
+        <div class="reels-section">
+            <div class="reels-viewport">
+
+                <!-- Reel 1 -->
+                <div class="reel-slide" data-index="1">
+                    <div class="reel-video-container">
+                        <video id="coupleVideo1" controls poster="images/first_smile.jpg" loop muted playsinline>
+                            <source src="video/www.mp4" type="video/mp4">
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="reel-overlay-content">
+                            <div class="reel-user">
+                                <img src="images/first_smile.jpg" alt="Avatar" class="reel-user-avatar">
+                                <span class="reel-user-name">our_moments ❤️</span>
+                            </div>
+                            <div class="reel-desc">Cute Filter Memories ✨ #love #smile #cute</div>
+                            <div class="reel-music"><i class="fa-solid fa-music"></i> Original Audio - Sweet Sounds</div>
+                        </div>
+                        <div class="reel-actions">
+                            <button class="action-btn" onclick="toggleLike(this, 128)"><i class="fa-solid fa-heart"></i></button>
+                            <span class="action-label" id="like-count-1">128</span>
+                            <button class="action-btn"><i class="fa-solid fa-comment"></i></button>
+                            <span class="action-label">45</span>
+                            <button class="action-btn"><i class="fa-solid fa-share"></i></button>
+                        </div>
+                        <div class="video-overlay" id="videoOverlay1">
+                            <span class="play-icon">▶️</span>
+                        </div>
+                    </div>
+
+                    <!-- Side Pop-up Message Panel -->
+                    <div class="reel-messages-container" id="messagesContainer1">
+                        <div class="message-bubble" style="transition-delay: 0.5s;">
+                            <div class="message-sender">💝 My Sweetheart</div>
+                            <div class="message-text">Omg look at that adorable laugh! 😂❤️</div>
+                        </div>
+                        <div class="message-bubble" style="transition-delay: 2.2s;">
+                            <div class="message-sender">💖 Me</div>
+                            <div class="message-text">My absolute favorite video of us! ✨</div>
+                        </div>
+                        <div class="message-bubble" style="transition-delay: 4.0s;">
+                            <div class="message-sender">💝 My Sweetheart</div>
+                            <div class="message-text">I could watch you smile forever and ever 🥺💕</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reel 2 -->
+                <div class="reel-slide" data-index="2">
+                    <div class="reel-video-container">
+                        <video id="coupleVideo2" controls poster="images/photo1.jpg" loop muted playsinline>
+                            <source src="video/qqq.mp4" type="video/mp4">
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="reel-overlay-content">
+                            <div class="reel-user">
+                                <img src="images/photo1.jpg" alt="Avatar" class="reel-user-avatar">
+                                <span class="reel-user-name">our_moments ❤️</span>
+                            </div>
+                            <div class="reel-desc">Every second with you is special 💕 #couplegoals #forever</div>
+                            <div class="reel-music"><i class="fa-solid fa-music"></i> Loving You - Love Beats</div>
+                        </div>
+                        <div class="reel-actions">
+                            <button class="action-btn" onclick="toggleLike(this, 256)"><i class="fa-solid fa-heart"></i></button>
+                            <span class="action-label" id="like-count-2">256</span>
+                            <button class="action-btn"><i class="fa-solid fa-comment"></i></button>
+                            <span class="action-label">98</span>
+                            <button class="action-btn"><i class="fa-solid fa-share"></i></button>
+                        </div>
+                        <div class="video-overlay" id="videoOverlay2">
+                            <span class="play-icon">▶️</span>
+                        </div>
+                    </div>
+
+                    <!-- Side Pop-up Message Panel -->
+                    <div class="reel-messages-container" id="messagesContainer2">
+                        <div class="message-bubble" style="transition-delay: 0.5s;">
+                            <div class="message-sender">💝 My Sweetheart</div>
+                            <div class="message-text">Every second with you feels like a fairytale rose 🌹</div>
+                        </div>
+                        <div class="message-bubble" style="transition-delay: 2.2s;">
+                            <div class="message-sender">💖 Me</div>
+                            <div class="message-text">Holding you close is my favorite place in the world 🌍</div>
+                        </div>
+                        <div class="message-bubble" style="transition-delay: 4.0s;">
+                            <div class="message-sender">💝 My Sweetheart</div>
+                            <div class="message-text">You make my heart beat so fast! 💓</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reel 3 -->
+                <div class="reel-slide" data-index="3">
+                    <div class="reel-video-container">
+                        <video id="coupleVideo3" controls poster="images/mm.jpg" loop muted playsinline>
+                            <source src="video/eee.mp4" type="video/mp4">
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="reel-overlay-content">
+                            <div class="reel-user">
+                                <img src="images/mm.jpg" alt="Avatar" class="reel-user-avatar">
+                                <span class="reel-user-name">our_moments ❤️</span>
+                            </div>
+                            <div class="reel-desc">Our Endless Love & Laughter 💖 #happybirthday #mylove</div>
+                            <div class="reel-music"><i class="fa-solid fa-music"></i> Forever Together - Instrumental</div>
+                        </div>
+                        <div class="reel-actions">
+                            <button class="action-btn" onclick="toggleLike(this, 512)"><i class="fa-solid fa-heart"></i></button>
+                            <span class="action-label" id="like-count-3">512</span>
+                            <button class="action-btn"><i class="fa-solid fa-comment"></i></button>
+                            <span class="action-label">120</span>
+                            <button class="action-btn"><i class="fa-solid fa-share"></i></button>
+                        </div>
+                        <div class="video-overlay" id="videoOverlay3">
+                            <span class="play-icon">▶️</span>
+                        </div>
+                    </div>
+
+                    <!-- Side Pop-up Message Panel -->
+                    <div class="reel-messages-container" id="messagesContainer3">
+                        <div class="message-bubble" style="transition-delay: 0.5s;">
+                            <div class="message-sender">💝 My Sweetheart</div>
+                            <div class="message-text">Pure joy and endless laughs! 💖</div>
+                        </div>
+                        <div class="message-bubble" style="transition-delay: 2.2s;">
+                            <div class="message-sender">💖 Me</div>
+                            <div class="message-text">Thank you for filling my life with so much happiness 🌸</div>
+                        </div>
+                        <div class="message-bubble" style="transition-delay: 4.0s;">
+                            <div class="message-sender">💝 My Sweetheart</div>
+                            <div class="message-text">Happy Birthday to my partner in crime! 🎂🎉</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reel 4 -->
+                <div class="reel-slide" data-index="4">
+                    <div class="reel-video-container">
+                        <video id="coupleVideo4" controls poster="images/photo2.jpg" loop muted playsinline>
+                            <source src="video/whatsapp_video_1.mp4" type="video/mp4">
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="reel-overlay-content">
+                            <div class="reel-user">
+                                <img src="images/photo2.jpg" alt="Avatar" class="reel-user-avatar">
+                                <span class="reel-user-name">our_moments ❤️</span>
+                            </div>
+                            <div class="reel-desc">Adventures of a lifetime with you 🌟 #memories #travel</div>
+                            <div class="reel-music"><i class="fa-solid fa-music"></i> Original Audio - Together Together</div>
+                        </div>
+                        <div class="reel-actions">
+                            <button class="action-btn" onclick="toggleLike(this, 342)"><i class="fa-solid fa-heart"></i></button>
+                            <span class="action-label" id="like-count-4">342</span>
+                            <button class="action-btn"><i class="fa-solid fa-comment"></i></button>
+                            <span class="action-label">88</span>
+                            <button class="action-btn"><i class="fa-solid fa-share"></i></button>
+                        </div>
+                        <div class="video-overlay" id="videoOverlay4">
+                            <span class="play-icon">▶️</span>
+                        </div>
+                    </div>
+
+                    <!-- Side Pop-up Message Panel -->
+                    <div class="reel-messages-container" id="messagesContainer4">
+                        <div class="message-bubble" style="transition-delay: 0.5s;">
+                            <div class="message-sender">💝 My Sweetheart</div>
+                            <div class="message-text">I love this day so much! 😍</div>
+                        </div>
+                        <div class="message-bubble" style="transition-delay: 2.2s;">
+                            <div class="message-sender">💖 Me</div>
+                            <div class="message-text">Best day ever with the best person! 🌹</div>
+                        </div>
+                        <div class="message-bubble" style="transition-delay: 4.0s;">
+                            <div class="message-sender">💝 My Sweetheart</div>
+                            <div class="message-text">Always together forever! 💕</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reel 5 -->
+                <div class="reel-slide" data-index="5">
+                    <div class="reel-video-container">
+                        <video id="coupleVideo5" controls poster="images/photo5.jpg" loop muted playsinline>
+                            <source src="video/whatsapp_video_2.mp4" type="video/mp4">
+                            Your browser does not support HTML5 video.
+                        </video>
+                        <div class="reel-overlay-content">
+                            <div class="reel-user">
+                                <img src="images/photo5.jpg" alt="Avatar" class="reel-user-avatar">
+                                <span class="reel-user-name">our_moments ❤️</span>
+                            </div>
+                            <div class="reel-desc">You make every day brighter 💖 #myfavorite #love</div>
+                            <div class="reel-music"><i class="fa-solid fa-music"></i> Loving You - Sweet Harmony</div>
+                        </div>
+                        <div class="reel-actions">
+                            <button class="action-btn" onclick="toggleLike(this, 620)"><i class="fa-solid fa-heart"></i></button>
+                            <span class="action-label" id="like-count-5">620</span>
+                            <button class="action-btn"><i class="fa-solid fa-comment"></i></button>
+                            <span class="action-label">154</span>
+                            <button class="action-btn"><i class="fa-solid fa-share"></i></button>
+                        </div>
+                        <div class="video-overlay" id="videoOverlay5">
+                            <span class="play-icon">▶️</span>
+                        </div>
+                    </div>
+
+                    <!-- Side Pop-up Message Panel -->
+                    <div class="reel-messages-container" id="messagesContainer5">
+                        <div class="message-bubble" style="transition-delay: 0.5s;">
+                            <div class="message-sender">💝 My Sweetheart</div>
+                            <div class="message-text">So happy we captured this! 🥺</div>
+                        </div>
+                        <div class="message-bubble" style="transition-delay: 2.2s;">
+                            <div class="message-sender">💖 Me</div>
+                            <div class="message-text">Me too, my favorite memory! ✨</div>
+                        </div>
+                        <div class="message-bubble" style="transition-delay: 4.0s;">
+                            <div class="message-sender">💝 My Sweetheart</div>
+                            <div class="message-text">Forever and always ❤️</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <a href="cake.html" class="nextBtn">
+            Blow Birthday Candles 🎂 →
+        </a>
+    </section>
+
+    <script src="js/music.js"></script>
+    <script src="js/firework.js"></script>
+    <script>
+        const videos = [
+            document.getElementById("coupleVideo1"),
+            document.getElementById("coupleVideo2"),
+            document.getElementById("coupleVideo3"),
+            document.getElementById("coupleVideo4"),
+            document.getElementById("coupleVideo5")
+        ];
+
+        const overlays = [
+            document.getElementById("videoOverlay1"),
+            document.getElementById("videoOverlay2"),
+            document.getElementById("videoOverlay3"),
+            document.getElementById("videoOverlay4"),
+            document.getElementById("videoOverlay5")
+        ];
+
+        // Setup Overlay Click Listeners
+        overlays.forEach((overlay, idx) => {
+            if (overlay && videos[idx]) {
+                overlay.addEventListener("click", () => {
+                    overlay.style.display = "none";
+                    videos[idx].muted = false;
+                    videos[idx].play();
+                    if (typeof triggerFireworks === "function") triggerFireworks();
+                });
+            }
+        });
+
+        // Trigger Side pop-up messages on video play and pause others
+        videos.forEach((video, idx) => {
+            if (video) {
+                video.addEventListener("play", () => {
+                    // Pause other videos
+                    videos.forEach((otherV, otherIdx) => {
+                        if (otherV && otherIdx !== idx) {
+                            otherV.pause();
+                        }
+                    });
+
+                    // Trigger the message bubble popups for this active video
+                    const containerId = `messagesContainer${idx + 1}`;
+                    const container = document.getElementById(containerId);
+                    if (container) {
+                        const bubbles = container.querySelectorAll(".message-bubble");
+                        bubbles.forEach(bubble => {
+                            bubble.classList.add("show");
+                        });
+                    }
+                });
+
+                video.addEventListener("pause", () => {
+                    // Optional: Reset bubbles on pause or keep them visible. Let's keep them visible once shown.
+                });
+            }
+        });
+
+        // Toggle Like button functionality
+        function toggleLike(btn, baseCount) {
+            btn.classList.toggle("liked");
+            const label = btn.nextElementSibling;
+            if (btn.classList.contains("liked")) {
+                btn.style.color = "#db2777";
+                label.innerText = baseCount + 1;
+                // Trigger quick burst of hearts/fireworks
+                if (typeof triggerFireworks === "function") triggerFireworks();
+            } else {
+                btn.style.color = "#ffffff";
+                label.innerText = baseCount;
+            }
+        }
+    </script>
+</body>
+
+</html>

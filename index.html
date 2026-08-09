@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love ❤️</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+    <div class="background">
+        <div class="gradient"></div>
+        <div id="stars"></div>
+        <div class="aurora"></div>
+    </div>
+
+    <!-- Floating Hearts -->
+    <div class="hearts">
+        <span>❤️</span>
+        <span>💖</span>
+        <span>💕</span>
+        <span>💗</span>
+        <span>💓</span>
+        <span>✨</span>
+    </div>
+
+    <!-- Floating Balloons -->
+    <div class="balloons">
+        <div class="balloon pink"></div>
+        <div class="balloon gold"></div>
+        <div class="balloon purple"></div>
+        <div class="balloon white"></div>
+    </div>
+
+    <!-- Music Button -->
+    <div class="music-box">
+        <button id="musicBtn" title="Toggle Music">
+            <i class="fa-solid fa-music"></i>
+        </button>
+        <audio id="bgMusic" loop>
+            <source src="music/happy-birthday.mp3" type="audio/mp3">
+        </audio>
+    </div>
+
+    <!-- Quick Navigation Bar for Couple Journey -->
+    <nav class="couple-nav">
+        <a href="index.html" class="active"><i class="fa-solid fa-house"></i> <span>Home</span></a>
+        <a href="memories.html"><i class="fa-solid fa-images"></i> <span>Memories</span></a>
+        <a href="reasons.html"><i class="fa-solid fa-heart"></i> <span>Reasons</span></a>
+        <a href="message.html"><i class="fa-solid fa-envelope"></i> <span>Letter</span></a>
+        <a href="video.html"><i class="fa-solid fa-film"></i> <span>Reel</span></a>
+        <a href="cake.html"><i class="fa-solid fa-cake-candles"></i> <span>Cake</span></a>
+        <a href="heart.html"><i class="fa-solid fa-hand-holding-heart"></i> <span>Promises</span></a>
+    </nav>
+
+    <!-- Main Hero Card -->
+    <section class="hero">
+        <div class="glass-card">
+            <div class="love-badge">
+                <span>👑 COUPLE SPECIAL 👑</span>
+            </div>
+
+            <h4 class="sub-header">
+                ✨ Countdown to August 10 ✨
+            </h4>
+
+            <h1 class="main-title">
+                Happy Birthday
+            </h1>
+
+            <h2>
+                <span id="birthdayName">My Dearest Love ❤️</span>
+            </h2>
+
+            <p class="typing">
+                Every moment with you is a dream come true...<br>
+                Today, the world celebrates the most special person in my life! ✨
+            </p>
+
+            <!-- Live Countdown Timer -->
+            <div class="countdown">
+                <div>
+                    <h3 id="days">00</h3>
+                    <p>Days</p>
+                </div>
+                <div>
+                    <h3 id="hours">00</h3>
+                    <p>Hours</p>
+                </div>
+                <div>
+                    <h3 id="minutes">00</h3>
+                    <p>Minutes</p>
+                </div>
+                <div>
+                    <h3 id="seconds">00</h3>
+                    <p>Seconds</p>
+                </div>
+            </div>
+
+            <!-- Gift Section -->
+            <div class="gift-section">
+                <div id="giftBox">
+                    <div class="gift-top"></div>
+                    <div class="gift-body"></div>
+                    <div class="gift-ribbon"></div>
+                </div>
+                <p>Click the Gift 🎁 for a secret surprise!</p>
+            </div>
+
+            <a class="nextBtn pulse-btn" href="memories.html">
+                Start Our Journey ❤️ →
+            </a>
+        </div>
+    </section>
+
+    <!-- Gift Popup Modal -->
+    <div id="giftModal" class="gift-modal">
+        <div class="gift-modal-card">
+            <span id="closeGiftModal" class="close-gift">&times;</span>
+            <div class="gift-modal-icon">🎁❤️</div>
+            <h2>You are My Greatest Gift!</h2>
+            <p>On your special day, I just want to remind you that having you in my life is the best blessing I could ever ask for. Happy Birthday my sweetheart!</p>
+            <a href="memories.html" class="nextBtn">Explore Memory Lane 📸</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        Made With ❤️ Just For You
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/music.js"></script>
+    <script src="js/firework.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blow Your Birthday Candles 🎂</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background">
+        <div class="gradient"></div>
+        <div id="stars"></div>
+        <div class="aurora"></div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-box">
+        <button id="musicBtn" title="Toggle Music">
+            <i class="fa-solid fa-music"></i>
+        </button>
+        <audio id="bgMusic" loop>
+            <source src="music/happy-birthday.mp3" type="audio/mp3">
+        </audio>
+    </div>
+
+    <!-- Floating Hearts -->
+    <div class="hearts">
+        <span>❤️</span>
+        <span>💖</span>
+        <span>💕</span>
+        <span>💗</span>
+        <span>💓</span>
+        <span>💝</span>
+        <span>❣️</span>
+    </div>
+
+    <!-- Quick Navigation Bar for Couple Journey -->
+    <nav class="couple-nav">
+        <a href="index.html"><i class="fa-solid fa-house"></i> <span>Home</span></a>
+        <a href="memories.html"><i class="fa-solid fa-images"></i> <span>Memories</span></a>
+        <a href="reasons.html"><i class="fa-solid fa-heart"></i> <span>Reasons</span></a>
+        <a href="message.html"><i class="fa-solid fa-envelope"></i> <span>Letter</span></a>
+        <a href="video.html"><i class="fa-solid fa-film"></i> <span>Reel</span></a>
+        <a href="cake.html" class="active"><i class="fa-solid fa-cake-candles"></i> <span>Cake</span></a>
+        <a href="heart.html"><i class="fa-solid fa-hand-holding-heart"></i> <span>Promises</span></a>
+    </nav>
+
+    <section class="cake-page">
+        <h1 class="page-title">
+            🎂 Make A Wish & Blow The Candles!
+        </h1>
+        <p class="sub-title" id="instructionText">
+            Click on the flames or press the button below to blow out your birthday candles ❤️
+        </p>
+
+        <!-- Interactive 3D Cake Container -->
+        <div class="cake-wrapper">
+            <div id="cake" class="cake">
+                <!-- Plate -->
+                <div class="plate"></div>
+
+                <!-- Layer 1 Bottom -->
+                <div class="layer layer-bottom"></div>
+
+                <!-- Layer 2 Middle -->
+                <div class="layer layer-middle"></div>
+
+                <!-- Layer 3 Top -->
+                <div class="layer layer-top">
+                    <div class="icing"></div>
+                    <div class="drips"></div>
+                </div>
+
+                <!-- Candles -->
+                <div class="candles-container">
+                    <div class="candle candle-1">
+                        <div class="flame"></div>
+                    </div>
+                    <div class="candle candle-2">
+                        <div class="flame"></div>
+                    </div>
+                    <div class="candle candle-3">
+                        <div class="flame"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cake-actions">
+            <button id="blowBtn" class="blow-btn">
+                🌬️ Blow Candles Out ✨
+            </button>
+        </div>
+
+        <!-- Make a Wish Modal -->
+        <div id="wishModal" class="wish-modal">
+            <div class="wish-card">
+                <h2>✨ Make A Birthday Wish ✨</h2>
+                <p>Close your eyes, make a secret wish in your heart, and send it to the stars ❤️</p>
+                <textarea id="wishInput" placeholder="Type your birthday wish here... (Optional & private)"></textarea>
+                <button id="sendWishBtn" class="nextBtn">
+                    Send Wish To The Stars ✨
+                </button>
+            </div>
+        </div>
+
+        <div class="next-nav-wrapper">
+            <a id="nextPageBtn" href="heart.html" class="nextBtn hidden-btn">
+                Touch My Heart ❤️ →
+            </a>
+        </div>
+    </section>
+
+    <script src="js/music.js"></script>
+    <script src="js/firework.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const flames = document.querySelectorAll(".flame");
+            const blowBtn = document.getElementById("blowBtn");
+            const wishModal = document.getElementById("wishModal");
+            const sendWishBtn = document.getElementById("sendWishBtn");
+            const nextPageBtn = document.getElementById("nextPageBtn");
+            const instructionText = document.getElementById("instructionText");
+            let blownCount = 0;
+
+            function blowCandles() {
+                if (blownCount === flames.length) return;
+
+                flames.forEach((flame, index) => {
+                    setTimeout(() => {
+                        flame.classList.add("out");
+                    }, index * 250);
+                });
+
+                blownCount = flames.length;
+                instructionText.innerText = "🎉 Yay! Happy Birthday! All candles are blown! 🎉";
+                blowBtn.style.display = "none";
+
+                // Fireworks explosion!
+                setTimeout(() => {
+                    triggerFireworks(window.innerWidth / 2, window.innerHeight / 3);
+                    triggerFireworks(window.innerWidth / 3, window.innerHeight / 2);
+                    triggerFireworks((2 * window.innerWidth) / 3, window.innerHeight / 2);
+                }, 200);
+
+                // Show Wish Modal
+                setTimeout(() => {
+                    if (wishModal) wishModal.classList.add("active");
+                }, 1200);
+            }
+
+            flames.forEach(flame => {
+                flame.addEventListener("click", () => {
+                    flame.classList.add("out");
+                    blownCount++;
+                    if (blownCount === flames.length) {
+                        blowCandles();
+                    }
+                });
+            });
+
+            if (blowBtn) blowBtn.addEventListener("click", blowCandles);
+
+            if (sendWishBtn) {
+                sendWishBtn.addEventListener("click", () => {
+                    const wishText = document.getElementById("wishInput").value.trim();
+                    const bodyText = wishText ? wishText : "Happy Birthday!";
+                    
+                    // Create sms link for mobile/desktop SMS clients
+                    const smsLink = `sms:+916381825830?body=${encodeURIComponent(bodyText)}`;
+                    window.location.href = smsLink;
+
+                    if (wishModal) wishModal.classList.remove("active");
+                    triggerFireworks(window.innerWidth / 2, window.innerHeight / 2);
+                    if (nextPageBtn) nextPageBtn.classList.remove("hidden-btn");
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

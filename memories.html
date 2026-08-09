@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Memories ❤️</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background">
+        <div class="gradient"></div>
+        <div id="stars"></div>
+        <div class="aurora"></div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-box">
+        <button id="musicBtn" title="Toggle Music">
+            <i class="fa-solid fa-music"></i>
+        </button>
+        <audio id="bgMusic" loop>
+            <source src="music/happy-birthday.mp3" type="audio/mp3">
+        </audio>
+    </div>
+
+    <!-- Floating Hearts -->
+    <div class="hearts">
+        <span>❤️</span>
+        <span>💕</span>
+        <span>💖</span>
+        <span>💗</span>
+        <span>💓</span>
+    </div>
+
+    <!-- Quick Navigation Bar for Couple Journey -->
+    <nav class="couple-nav">
+        <a href="index.html"><i class="fa-solid fa-house"></i> <span>Home</span></a>
+        <a href="memories.html" class="active"><i class="fa-solid fa-images"></i> <span>Memories</span></a>
+        <a href="reasons.html"><i class="fa-solid fa-heart"></i> <span>Reasons</span></a>
+        <a href="message.html"><i class="fa-solid fa-envelope"></i> <span>Letter</span></a>
+        <a href="video.html"><i class="fa-solid fa-film"></i> <span>Reel</span></a>
+        <a href="cake.html"><i class="fa-solid fa-cake-candles"></i> <span>Cake</span></a>
+        <a href="heart.html"><i class="fa-solid fa-hand-holding-heart"></i> <span>Promises</span></a>
+    </nav>
+
+    <section class="memory-page">
+        <h1 class="page-title">
+            📸 Our Romantic Memory Lane
+        </h1>
+        <p class="sub-title">
+            Click on any memory to enlarge & relive our special moments ❤️
+        </p>
+
+        <!-- Category Filters -->
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">All Memories ✨</button>
+            <button class="filter-btn" data-filter="dates">First Dates 🌹</button>
+            <button class="filter-btn" data-filter="trips">Road Trips 🚗</button>
+            <button class="filter-btn" data-filter="cute">Cutest Moments 💕</button>
+        </div>
+
+        <div class="gallery">
+            <!-- Photo 1 -->
+            <div class="photo-card polaroid" data-category="dates">
+                <div class="img-wrapper">
+                    <img src="images/first_smile.jpg" alt="Our First Smile" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600&auto=format&fit=crop'">
+                </div>
+                <h3>Our First Smile 😊</h3>
+                <p class="photo-date">The moment my heart knew you were the one ❤️</p>
+            </div>
+
+            <!-- Photo 2 -->
+            <div class="photo-card polaroid" data-category="cute">
+                <div class="img-wrapper">
+                    <img src="images/photo2.jpg" alt="Memory 2" onerror="this.src='https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=600&auto=format&fit=crop'">
+                </div>
+                <h3>The Best Day Ever ❤️</h3>
+                <p class="photo-date">Pure laughter and unforgettable cozy vibes ✨</p>
+            </div>
+
+            <!-- Photo 3 -->
+            <div class="photo-card polaroid" data-category="trips">
+                <div class="img-wrapper">
+                    <img src="images/photo3.jpg" alt="Memory 3" onerror="this.src='https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=600&auto=format&fit=crop'">
+                </div>
+                <h3>Together Forever 💕</h3>
+                <p class="photo-date">Hand in hand, ready to conquer the world 🌍</p>
+            </div>
+
+            <!-- Photo 4 -->
+            <div class="photo-card polaroid" data-category="dates">
+                <div class="img-wrapper">
+                    <img src="images/mm.jpg" alt="Beautiful Moments" onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=600&auto=format&fit=crop'">
+                </div>
+                <h3>Beautiful Moments 🌸</h3>
+                <p class="photo-date">Soft whispers under the golden sunset 🌅</p>
+            </div>
+
+            <!-- Photo 5 -->
+            <div class="photo-card polaroid" data-category="trips">
+                <div class="img-wrapper">
+                    <img src="images/photo5.jpg" alt="Memory 5" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=600&auto=format&fit=crop'">
+                </div>
+                <h3>Late Night Talks ✨</h3>
+                <p class="photo-date">Counting stars and dreaming together 🌙</p>
+            </div>
+
+            <!-- Photo 6 -->
+            <div class="photo-card polaroid" data-category="cute">
+                <div class="img-wrapper">
+                    <img src="images/photo6.jpg" alt="Memory 6" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=600&auto=format&fit=crop'">
+                </div>
+                <h3>Always My Favorite ❤️</h3>
+                <p class="photo-date">My home is wherever you are 🏡💖</p>
+            </div>
+        </div>
+
+        <a href="reasons.html" class="nextBtn">
+            Why You Are My Everything 💖 →
+        </a>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <div class="lightbox-content">
+            <span id="closeLightbox" class="close-lightbox">&times;</span>
+            <img id="lightboxImg" src="" alt="Enlarged Memory">
+            <h3 id="lightboxCaption"></h3>
+        </div>
+    </div>
+
+    <script src="js/music.js"></script>
+    <script src="js/firework.js"></script>
+    <script src="js/gallery.js"></script>
+</body>
+
+</html>

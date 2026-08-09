@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Message ❤️</title>
+
+    <!-- Google Fonts: Poppins & Dancing Script & Great Vibes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background">
+        <div class="gradient"></div>
+        <div id="stars"></div>
+        <div class="aurora"></div>
+    </div>
+
+    <!-- Floating Hearts -->
+    <div class="hearts">
+        <span>❤️</span>
+        <span>💖</span>
+        <span>💕</span>
+        <span>💗</span>
+        <span>💓</span>
+        <span>✨</span>
+        <span>❣️</span>
+    </div>
+
+    <!-- Music Button -->
+    <div class="music-box">
+        <button id="musicBtn" title="Toggle Music">
+            <i class="fa-solid fa-music"></i>
+        </button>
+        <audio id="bgMusic" loop>
+            <source src="music/happy-birthday.mp3" type="audio/mp3">
+        </audio>
+    </div>
+
+    <!-- Quick Navigation Bar for Couple Journey -->
+    <nav class="couple-nav">
+        <a href="index.html"><i class="fa-solid fa-house"></i> <span>Home</span></a>
+        <a href="memories.html"><i class="fa-solid fa-images"></i> <span>Memories</span></a>
+        <a href="reasons.html"><i class="fa-solid fa-heart"></i> <span>Reasons</span></a>
+        <a href="message.html" class="active"><i class="fa-solid fa-envelope"></i> <span>Letter</span></a>
+        <a href="video.html"><i class="fa-solid fa-film"></i> <span>Reel</span></a>
+        <a href="cake.html"><i class="fa-solid fa-cake-candles"></i> <span>Cake</span></a>
+        <a href="heart.html"><i class="fa-solid fa-hand-holding-heart"></i> <span>Promises</span></a>
+    </nav>
+
+    <section class="letter-page">
+        <h1 class="page-title">
+            💌 A Letter Just For You
+        </h1>
+        <p class="sub-title">
+            Click the wax seal to open your heartfelt surprise ❤️
+        </p>
+
+        <!-- Interactive Envelope Container -->
+        <div class="envelope-container">
+            <div id="envelope" class="envelope">
+                <div class="cover"></div>
+                <div class="pocket"></div>
+                <div id="waxSeal" class="wax-seal">
+                    <span>❤️</span>
+                    <small>OPEN</small>
+                </div>
+            </div>
+
+            <!-- Expanding Handwritten Letter Card -->
+            <div id="letterCard" class="letter-card">
+                <div class="stamp">
+                    <span>👑</span>
+                </div>
+                <div class="letter-header">
+                    <h2>Dearest Sivaaaaa ❤️</h2>
+                </div>
+                <div class="letter-body">
+                    <p id="typingText"></p><span id="cursor" class="cursor">|</span>
+                </div>
+                <div class="letter-footer">
+                    <p class="signature">With endless love & warmth,</p>
+                    <p class="sign-name">Forever & Always ✨</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-wrapper">
+            <a id="nextButton" class="nextBtn pulse-btn" href="video.html">
+                Continue to Next Surprise ❤️ →
+            </a>
+        </div>
+    </section>
+
+    <script src="js/typing.js"></script>
+    <script src="js/music.js"></script>
+</body>
+
+</html>
