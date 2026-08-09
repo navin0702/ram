@@ -34,10 +34,16 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(bgAudio);
     }
     
+    // Clear any hardcoded source tags that might interfere
+    while (bgAudio.firstChild) {
+        bgAudio.removeChild(bgAudio.firstChild);
+    }
+    
     // Set song source and options
     bgAudio.src = songSrc;
     bgAudio.loop = true;
     bgAudio.volume = volume;
+    bgAudio.load();
 
     // Try playing on load if it was active
     const isPlaying = localStorage.getItem("bgMusicPlaying") === "true";
