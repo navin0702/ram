@@ -4,10 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const path = window.location.pathname.toLowerCase();
     
     const isNoMusicPage = path.endsWith("index.html") || 
-                          path.endsWith("video.html") || 
+                          path.includes("video") || 
                           path.endsWith("/") || 
                           path === "" ||
-                          (!path.includes(".html") && !path.includes("reasons") && !path.includes("message") && !path.includes("video") && !path.includes("heart") && !path.includes("cake") && !path.includes("memories"));
+                          (!path.includes("reasons") && !path.includes("message") && !path.includes("video") && !path.includes("heart") && !path.includes("cake") && !path.includes("memories"));
 
     if (isNoMusicPage) {
         if (musicBtn) musicBtn.style.display = "none";
@@ -20,16 +20,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let songSrc = "";
     let volume = 0.8;
     
-    if (path.endsWith("message.html")) {
+    if (path.includes("message")) {
         songSrc = "music/friendship.mp3";
         volume = 0.5;
-    } else if (path.endsWith("memories.html")) {
+    } else if (path.includes("memories")) {
         songSrc = "music/jodinilave.mp3";
         volume = 0.6;
-    } else if (path.endsWith("cake.html")) {
+    } else if (path.includes("cake")) {
         songSrc = "music/birthday_bgm.m4a";
         volume = 0.8;
-    } else if (path.endsWith("reasons.html") || path.endsWith("heart.html")) {
+    } else if (path.includes("reasons") || path.includes("heart")) {
         songSrc = "music/theri.mp3";
         volume = 0.8;
     }
