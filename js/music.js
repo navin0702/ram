@@ -56,8 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
     bgAudio.volume = volume;
     bgAudio.load();
 
-    // Try playing on load if it was active
-    const isPlaying = localStorage.getItem("bgMusicPlaying") === "true";
+    // Try playing on load if it was active (default to true for new visitors)
+    const isPlaying = localStorage.getItem("bgMusicPlaying") !== "false";
     if (isPlaying) {
         bgAudio.play().then(() => {
             if (musicBtn) musicBtn.classList.add("playing");
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Fallback for browser autoplay policies: trigger play on first interaction
     const startAutoplay = () => {
-        if (bgAudio.paused && localStorage.getItem("bgMusicPlaying") === "true") {
+        if (bgAudio.paused && localStorage.getItem("bgMusicPlaying") !== "false") {
             bgAudio.play().then(() => {
                 if (musicBtn) musicBtn.classList.add("playing");
             });
